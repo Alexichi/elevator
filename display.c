@@ -1,5 +1,5 @@
 /*
- * callbacks.c
+ * display.c
  * 
  * Copyright 2017 Axel <axel@axel-GP62-6QE>
  * 
@@ -23,15 +23,34 @@
 
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <libsx.h>
+#include "callbacks.h"
+#include "display.h"
 
-void redisplay(Widget w, int width, int height, void *data)
+
+void init_display(int argc, char **argv, void *d)
 {
-	DrawFilledBox(50, 50, 75, 75); 
+	/* creation et assemblage widget */
+	Widget DrawArea, ButtonQuit;
+	
+	DrawArea = MakeDrawArea(MAXX, MAXY, redisplay, d);
+	ButtonQuit = MakeButton("Quit", quit, d);
+	SetDrawArea(DrawArea);
+	
+	/* Positionnement widgets */ 
+	SetWidgetPos(ButtonQuit, PLACE_UNDER, DrawArea, NO_CARE, NULL);
+	printf("widgets initialized\n");
+	
+	/* gestion couleurs */
+	GetStandardColors();
+	
+	/* affichage interface */
+	ShowDisplay();
+	printf("display initialized \n");
 }
 
-void quit(Widget w, void *d)
+void display_update(void)
 {
-	exit(EXIT_SUCCESS);
+	
 }
+

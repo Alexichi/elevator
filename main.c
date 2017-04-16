@@ -1,5 +1,5 @@
 /*
- * callbacks.c
+ * main.c
  * 
  * Copyright 2017 Axel <axel@axel-GP62-6QE>
  * 
@@ -24,14 +24,26 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <libsx.h>
+#include "display.h"
+#include "data.h"
 
-void redisplay(Widget w, int width, int height, void *data)
+int main(int argc, char **argv)
 {
-	DrawFilledBox(50, 50, 75, 75); 
+	Ascenseur ascenseur;
+	int nbEtage = 5;
+
+	if (OpenDisplay(argc, argv) == 0) 
+	{
+		fprintf(stderr, "Can't open display \n");
+		return EXIT_FAILURE;
+	}
+	printf("display openned \n");
+	
+	init_display(argc, argv, &ascenseur);
+	init_struct(&ascenseur, nbEtage);
+	MainLoop();
+	return 0;
 }
 
-void quit(Widget w, void *d)
-{
-	exit(EXIT_SUCCESS);
-}

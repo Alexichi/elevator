@@ -1,5 +1,5 @@
 /*
- * callbacks.c
+ * data.c
  * 
  * Copyright 2017 Axel <axel@axel-GP62-6QE>
  * 
@@ -23,15 +23,16 @@
 
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <libsx.h>
+#include "data.h"
 
-void redisplay(Widget w, int width, int height, void *data)
+
+
+
+void init_struct(Ascenseur *d, int nbEtage)
 {
-	DrawFilledBox(50, 50, 75, 75); 
+	d->etageActuel = 0;
+	d->etageMax = 0;
+	d->ZoneDessin = NULL;
 }
 
-void quit(Widget w, void *d)
-{
-	exit(EXIT_SUCCESS);
-}
