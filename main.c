@@ -2,12 +2,12 @@
 #include "display.h"
 #include "data.h"
 #include <stdlib.h>
+#include "main.h"
 
 int main(int argc, char **argv)
 {
 	/* Création d'un ascenseur */
 	Ascenseur ascenseur;
-	int nbEtage = 5;
 
 	if (OpenDisplay(argc, argv) == 0) 
 	{
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	printf("display openned \n");
 	
 	init_display(argc, argv, &ascenseur);
-	init_struct(&ascenseur, nbEtage);
+	init_struct(&ascenseur, NB_ETAGES);
 	/* Boucle permettant d'afficher constamment l'interface graphique */
 	MainLoop();
 	return 0;

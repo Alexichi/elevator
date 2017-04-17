@@ -10,6 +10,13 @@ void redisplay(Widget w, int width, int height, void *data)
 }
 
 /*
+ * Rôle : Amène l'ascenseur à l'étage demandé
+ */
+void callAscenseur(Widget w, void *d){
+	
+}
+
+/*
  * Rôle : Permet de quitter l'application
  */
 void quit(Widget w, void *d)

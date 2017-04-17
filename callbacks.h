@@ -4,6 +4,7 @@
 #include <libsx.h>
 
 void redisplay(Widget, int, int, void *);
+void callAscenseur(Widget, void*);
 void quit(Widget, void *);
 
 
