@@ -14,12 +14,13 @@ void init_display(int argc, char **argv, void *d)
 	
 	/* creation et assemblage widget */
 	Widget DrawArea, ButtonQuit, ButtonEtage[NB_ETAGES+1];
-	
+	char buttonNumber[2] = "0";
 	DrawArea = MakeDrawArea(MAXX, MAXY, redisplay, d);
-	ButtonEtage[NB_ETAGES] = MakeButton("1", callAscenseur, NULL);
+	ButtonEtage[NB_ETAGES] = MakeButton("5", callAscenseur, NULL);
 	SetWidgetPos(ButtonEtage[NB_ETAGES],PLACE_RIGHT, DrawArea, NO_CARE, NULL);
 	for(int i = NB_ETAGES-1; i >= 0; i--){
-		ButtonEtage[i] = MakeButton("0", callAscenseur, NULL);
+		sprintf(buttonNumber, "%d", i);
+		ButtonEtage[i] = MakeButton(buttonNumber, callAscenseur, NULL);
 		SetWidgetPos(ButtonEtage[i], PLACE_RIGHT, DrawArea, PLACE_UNDER, ButtonEtage[i+1]);
 	}
 	ButtonQuit = MakeButton("Quit", quit, NULL);
@@ -36,6 +37,8 @@ void init_display(int argc, char **argv, void *d)
 	ShowDisplay();
 	printf("display initialized \n");
 }
+
+
 
 void display_update(void)
 {
