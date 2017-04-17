@@ -1,5 +1,8 @@
+#ifndef DATA_H
+#define DATA_H
 
-
+#include <stdio.h>
+#include <libsx.h>
 
 typedef struct{
 	int etageActuel;
@@ -9,3 +12,4 @@ typedef struct{
 
 void init_struct(Ascenseur *n, int);
 
+#endif

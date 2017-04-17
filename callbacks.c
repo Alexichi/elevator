@@ -1,36 +1,17 @@
-/*
- * callbacks.c
- * 
- * Copyright 2017 Axel <axel@axel-GP62-6QE>
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- * 
- * 
- */
-
-
-#include <stdio.h>
+#include "callbacks.h"
 #include <stdlib.h>
-#include <libsx.h>
 
+/*
+ * Rôle : créer une zone colorée et l'afficher dans l'interface graphique
+ */
 void redisplay(Widget w, int width, int height, void *data)
 {
 	DrawFilledBox(50, 50, 75, 75); 
 }
 
+/*
+ * Rôle : Permet de quitter l'application
+ */
 void quit(Widget w, void *d)
 {
 	exit(EXIT_SUCCESS);
