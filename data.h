@@ -10,6 +10,13 @@ typedef struct{
 	Widget ZoneDessin;
 } Ascenseur;
 
+
+typedef struct{
+	char *label;
+	Widget *adresse;
+} EtiquetteBouton;
+
 void init_struct(Ascenseur *n, int);
+void getLabel(void);
 
 #endif

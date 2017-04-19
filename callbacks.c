@@ -1,4 +1,5 @@
 #include "callbacks.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /*
@@ -12,8 +13,9 @@ void redisplay(Widget w, int width, int height, void *data)
 /*
  * Rôle : Amène l'ascenseur à l'étage demandé
  */
-void callAscenseur(Widget w, void *d){
-	
+void callAscenseur(Widget w, void *d)
+{
+	//printf("%s\n", w.label);
 }
 
 /*

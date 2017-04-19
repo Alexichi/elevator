@@ -15,9 +15,8 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	}
 	printf("display openned \n");
-	
-	init_display(argc, argv, &ascenseur);
 	init_struct(&ascenseur, NB_ETAGES);
+	init_display(argc, argv, &ascenseur);
 	/* Boucle permettant d'afficher constamment l'interface graphique */
 	MainLoop();
 	return 0;

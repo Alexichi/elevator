@@ -13,10 +13,9 @@ all: $(PROG)
 $(PROG): $(OBJS)
 	$(CC)  -o $@ $^ $(LDFLAGS)	# $@ la cible $^ toutes les dependances
 
-
-callbacks.o: callbacks.h #data.h
+callbacks.o: callbacks.h data.h
 data.o: data.h
-display.o: callbacks.h
+display.o: callbacks.h data.h
 main.o:   callbacks.h data.h
 # le lien entre .o et .c
 %.o: %.c

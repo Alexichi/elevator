@@ -8,7 +8,12 @@
 void init_struct(Ascenseur *d, int nbEtage)
 {
 	d->etageActuel = 0;
-	d->etageMax = 0;
+	d->etageMax = nbEtage;
 	d->ZoneDessin = NULL;
 }
 
+
+void getLabel(void)
+{
+	
+}
