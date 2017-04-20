@@ -11,12 +11,22 @@ typedef struct{
 } Ascenseur;
 
 
-typedef struct{
+struct noeud{
 	char *label;
 	Widget *adresse;
-} EtiquetteBouton;
+	struct noeud *boutonSuivant;
+};
+
+typedef struct
+{
+	struct noeud *tete;
+	int lg;
+} ListeBouton;
 
 void init_struct(Ascenseur *n, int);
-void getLabel(void);
+char* getLabel(ListeBouton, Widget*);
+int longueur(ListeBouton);
+void addBouton(ListeBouton*, Widget*, char*, int); 
+Widget getBouton(ListeBouton, int);
 
 #endif

@@ -3,7 +3,7 @@
 #include "callbacks.h"
 #include "display.h"
 #include "main.h"
-
+#include "data.h"
 
 /*
  * Rôle : initialiser l'interface grapique avec tous les éléments
@@ -13,21 +13,36 @@ void init_display(int argc, char **argv, void *d)
 {
 	
 	/* creation et assemblage widget */
-	Widget DrawArea, ButtonQuit, ButtonEtage[NB_ETAGES+1];
+	ListeBouton l;
+	l.lg = 0;
+	Widget DrawArea, BoutonQuit, BoutonEtage[NB_ETAGES+1], *adresseBoutonEtagePrecedent;
+	Widget BoutonEtagePrecedent;
 	char buttonNumber[2] = "0";
 	DrawArea = MakeDrawArea(MAXX, MAXY, redisplay, d);
-	ButtonEtage[NB_ETAGES] = MakeButton("5", callAscenseur, NULL);
-	SetWidgetPos(ButtonEtage[NB_ETAGES],PLACE_RIGHT, DrawArea, NO_CARE, NULL);
-	for(int i = NB_ETAGES-1; i >= 0; i--){
-		sprintf(buttonNumber, "%d", i);
-		ButtonEtage[i] = MakeButton(buttonNumber, callAscenseur, NULL);
-		SetWidgetPos(ButtonEtage[i], PLACE_RIGHT, DrawArea, PLACE_UNDER, ButtonEtage[i+1]);
-	}
-	ButtonQuit = MakeButton("Quit", quit, NULL);
 	SetDrawArea(DrawArea);
+	for(int i = 0; i <= NB_ETAGES; i++)
+	{
+		if( i == 0)
+		{
+			sprintf(buttonNumber, "%d", i);
+			BoutonEtage[i] = MakeButton(buttonNumber, callAscenseur, NULL);
+			addBouton(&l, BoutonEtage, "0", i);
+			printf("[DEBUG]	Adresse Bouton Etage numero %d %#010x\n", i, &BoutonEtage[i]);
+			SetWidgetPos(BoutonEtage[i],PLACE_RIGHT, DrawArea, NO_CARE, NULL);
+		}
+		else
+		{
+			sprintf(buttonNumber, "%d", i);
+			BoutonEtage[i] = MakeButton(buttonNumber, callAscenseur, NULL);
+			printf("[DEBUG]	Adresse Bouton Etage numero %d %#010x\n", i, &BoutonEtage[i]);
+			addBouton(&l, &BoutonEtage[i], buttonNumber, i);
+			SetWidgetPos(BoutonEtage[i] , PLACE_RIGHT, DrawArea, PLACE_UNDER, getBouton(l, i-1));
+		}
+	}
+	BoutonQuit = MakeButton("Quit", quit, NULL);
+	printf("[DEBUG]	Adresse BoutonQuit %#010x\n", &BoutonQuit);
+	SetWidgetPos(BoutonQuit, PLACE_UNDER, DrawArea, NO_CARE, NULL);
 	
-	/* Positionnement widgets */
-	SetWidgetPos(ButtonQuit, PLACE_UNDER, DrawArea, NO_CARE, NULL);
 	printf("widgets initialized\n");
 	
 	/* gestion couleurs */
