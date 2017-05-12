@@ -54,9 +54,11 @@ void init_display(int argc, char **argv, void *d)
 }
 
 
-
-void display_update(void)
+/*
+ * Rôle : déplacer l'ascenseur
+ */
+void display_update(void* d)
 {
-	
+	//AddTimeOut(500, ascenseurMontant(d, NULL), NULL);
 }
 

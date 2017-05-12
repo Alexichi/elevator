@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	printf("display openned \n");
 	init_struct(&ascenseur, NB_ETAGES);
 	init_display(argc, argv, &ascenseur);
+	display_update(&ascenseur);//Fonction permettant de déplacer l'ascenseur
 	/* Boucle permettant d'afficher constamment l'interface graphique */
 	MainLoop();
 	return 0;
