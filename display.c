@@ -13,10 +13,8 @@ void init_display(int argc, char **argv, void *d)
 {
 	
 	/* creation et assemblage widget */
-	ListeBouton l;
-	l.lg = 0;
-	Widget DrawArea, BoutonQuit, BoutonEtage[NB_ETAGES+1], *adresseBoutonEtagePrecedent;
-	Widget BoutonEtagePrecedent;
+	Ascenseur* data = d;
+	Widget DrawArea, BoutonQuit;
 	char buttonNumber[2] = "0";
 	DrawArea = MakeDrawArea(MAXX, MAXY, redisplay, d);
 	SetDrawArea(DrawArea);
@@ -25,18 +23,16 @@ void init_display(int argc, char **argv, void *d)
 		if( i == 0)
 		{
 			sprintf(buttonNumber, "%d", i);
-			BoutonEtage[i] = MakeButton(buttonNumber, callAscenseur, NULL);
-			addBouton(&l, BoutonEtage, "0", i);
+			BoutonEtage[i] = MakeButton(buttonNumber, callAscenseur, data);
 			printf("[DEBUG]	Adresse Bouton Etage numero %d %#010x\n", i, &BoutonEtage[i]);
 			SetWidgetPos(BoutonEtage[i],PLACE_RIGHT, DrawArea, NO_CARE, NULL);
 		}
 		else
 		{
 			sprintf(buttonNumber, "%d", i);
-			BoutonEtage[i] = MakeButton(buttonNumber, callAscenseur, NULL);
+			BoutonEtage[i] = MakeButton(buttonNumber, callAscenseur, data);
 			printf("[DEBUG]	Adresse Bouton Etage numero %d %#010x\n", i, &BoutonEtage[i]);
-			addBouton(&l, &BoutonEtage[i], buttonNumber, i);
-			SetWidgetPos(BoutonEtage[i] , PLACE_RIGHT, DrawArea, PLACE_UNDER, getBouton(l, i-1));
+			SetWidgetPos(BoutonEtage[i] , PLACE_RIGHT, DrawArea, PLACE_UNDER, BoutonEtage[i-1]);
 		}
 	}
 	BoutonQuit = MakeButton("Quit", quit, NULL);
@@ -59,6 +55,6 @@ void init_display(int argc, char **argv, void *d)
  */
 void display_update(void* d)
 {
-	//AddTimeOut(500, ascenseurMontant(d, NULL), NULL);
+	//AddTimeOut(1000, *ascenseurMontant(d, 1000), d);
 }
 

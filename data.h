@@ -10,23 +10,8 @@ typedef struct{
 	Widget ZoneDessin;
 } Ascenseur;
 
+void init_struct(Ascenseur *, int);
+int getFloorNumber(Widget w);
 
-struct noeud{
-	char *label;
-	Widget *adresse;
-	struct noeud *boutonSuivant;
-};
-
-typedef struct
-{
-	struct noeud *tete;
-	int lg;
-} ListeBouton;
-
-void init_struct(Ascenseur *n, int);
-char* getLabel(ListeBouton, Widget*);
-int longueur(ListeBouton);
-void addBouton(ListeBouton*, Widget*, char*, int); 
-Widget getBouton(ListeBouton, int);
 
 #endif

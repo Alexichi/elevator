@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "main.h"
 #include "display.h"
+#include "data.h"
 
 /*
  * Rôle : créer une zone colorée et l'afficher dans l'interface graphique
@@ -13,6 +14,7 @@ void redisplay(Widget w, int width, int height, void *data)
 	int largeurCageAsc = 80;
 	int largeurEtage = MAXX - largeurCageAsc;
 	int hauteurEtage = MAXY/(NB_ETAGES+1);
+	Ascenseur *d = (Ascenseur *)data;
 	
 	/* Dessin de la cage d'ascenseur */
 	DrawBox(0, 0, largeurCageAsc, MAXY);
@@ -23,14 +25,14 @@ void redisplay(Widget w, int width, int height, void *data)
 	}
 	
 	/* Dessin de l'ascenseur (A redéfinir car il n'est pas relié à la structure ascenseur) */
-	DrawFilledBox(5, MAXY - hauteurEtage, largeurCageAsc - 10, hauteurEtage);
+	DrawFilledBox(5, MAXY - hauteurEtage*(d->etageActuel), largeurCageAsc - 10, hauteurEtage);
 }
 
 /*
  * Rôle : Callback permettant normalement de faire monter l'ascenseur
  * Cette fonction est en paramètre de la fonction display_update()
  */
-void  ascenceurMontant(void *data, XtIntervalId *id)
+void  *ascenseurMontant(void *data, XtIntervalId *id)
 {
 	
 }
@@ -40,7 +42,10 @@ void  ascenceurMontant(void *data, XtIntervalId *id)
  */
 void callAscenseur(Widget w, void *d)
 {
-	//printf("%s\n", w.label);
+	Ascenseur *data = (Ascenseur *)d;
+	int numeroEtage = getFloorNumber(w);
+	data->etageActuel = numeroEtage;
+	printf("Numero Etage Actuel : %d\n", data->etageActuel);
 }
 
 /*
