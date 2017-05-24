@@ -12,6 +12,7 @@ void init_struct(Ascenseur *d, int nbEtage)
 {
 	d->etageActuel = 1;
 	d->etageMax = nbEtage;
+	d->tempo = TEMPO;
 	d->ZoneDessin = NULL;
 }
 

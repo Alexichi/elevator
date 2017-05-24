@@ -5,6 +5,7 @@
 
 
 #define NB_ETAGES 5
+#define TEMPO 500
 
 Widget BoutonEtage[NB_ETAGES+1];
 

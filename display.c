@@ -17,6 +17,7 @@ void init_display(int argc, char **argv, void *d)
 	Widget DrawArea, BoutonQuit;
 	char buttonNumber[2] = "0";
 	DrawArea = MakeDrawArea(MAXX, MAXY, redisplay, d);
+	data->ZoneDessin = &DrawArea;
 	SetDrawArea(DrawArea);
 	for(int i = 0; i <= NB_ETAGES; i++)
 	{
@@ -55,6 +56,7 @@ void init_display(int argc, char **argv, void *d)
  */
 void display_update(void* d)
 {
-	//AddTimeOut(1000, *ascenseurMontant(d, 1000), d);
+	Ascenseur *data = (Ascenseur *)d;
+	AddTimeOut(data->tempo, &ascenseurMontant, d);
 }
 

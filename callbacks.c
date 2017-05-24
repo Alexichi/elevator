@@ -15,7 +15,7 @@ void redisplay(Widget w, int width, int height, void *data)
 	int largeurEtage = MAXX - largeurCageAsc;
 	int hauteurEtage = MAXY/(NB_ETAGES+1);
 	Ascenseur *d = (Ascenseur *)data;
-	
+	ClearDrawArea();
 	/* Dessin de la cage d'ascenseur */
 	DrawBox(0, 0, largeurCageAsc, MAXY);
 	
@@ -25,16 +25,18 @@ void redisplay(Widget w, int width, int height, void *data)
 	}
 	
 	/* Dessin de l'ascenseur (A redéfinir car il n'est pas relié à la structure ascenseur) */
-	DrawFilledBox(5, MAXY - hauteurEtage*(d->etageActuel), largeurCageAsc - 10, hauteurEtage);
+	DrawFilledBox(5, MAXY - hauteurEtage*((d->etageActuel)+1), largeurCageAsc - 10, hauteurEtage);
 }
 
 /*
  * Rôle : Callback permettant normalement de faire monter l'ascenseur
  * Cette fonction est en paramètre de la fonction display_update()
  */
-void  *ascenseurMontant(void *data, XtIntervalId *id)
+void ascenseurMontant(void *data, XtIntervalId *Id)
 {
-	
+	Ascenseur *d = (Ascenseur *)data;
+	redisplay(*(d->ZoneDessin), MAXX, MAXY, data);
+	AddTimeOut(d->tempo, &ascenseurMontant, data);
 }
 
 /*

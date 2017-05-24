@@ -7,7 +7,8 @@
 typedef struct{
 	int etageActuel;
 	int etageMax;
-	Widget ZoneDessin;
+	int tempo;
+	Widget *ZoneDessin;
 } Ascenseur;
 
 void init_struct(Ascenseur *, int);

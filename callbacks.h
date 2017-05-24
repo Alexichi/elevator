@@ -5,7 +5,7 @@
 
 void redisplay(Widget, int, int, void *);
 void callAscenseur(Widget, void*);
-void *ascenseurMontant(void *, XtIntervalId *);
+void ascenseurMontant(void *, XtIntervalId *);
 void quit(Widget, void *);
 
 
