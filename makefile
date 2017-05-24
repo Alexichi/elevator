@@ -13,10 +13,10 @@ all: $(PROG)
 $(PROG): $(OBJS)
 	$(CC)  -o $@ $^ $(LDFLAGS)	# $@ la cible $^ toutes les dependances
 
-callbacks.o: callbacks.h data.h main.h
+callbacks.o: callbacks.h data.h main.h display.h
 data.o: data.h main.h
-display.o: callbacks.h data.h main.h
-main.o:   callbacks.h data.h
+display.o: callbacks.h data.h main.h display.h
+main.o:   display.h data.h main.h
 # le lien entre .o et .c
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<		# $< derniere dependance

@@ -2,7 +2,7 @@
 #define DISPLAY_H
 
 #define MAXX 300
-#define MAXY 500
+#define MAXY 600
 
 
 void init_display(int , char **, void *);

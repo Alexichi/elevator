@@ -8,18 +8,17 @@
 /*
  * Rôle : initialiser l'ascenseur
  */
-void init_struct(Ascenseur *d, int nbEtage)
+void init_struct(Ascenseur *d)		// Structure de donnee qui permet de faire transiter les donnees utiles au programme
 {
-	d->etageActuel = 1;
-	d->etageMax = nbEtage;
+	d->etageActuel = 0;
+	d->etageSouhaite = 0;
 	d->tempo = TEMPO;
 	d->ZoneDessin = NULL;
 }
 
-int getFloorNumber(Widget w)
+int getFloorNumber(Widget w)		// Renvoie le numero d'etage, le widget w doit etre un bouton cree dans init_display
 {
 	int i = 0;
-	char label[2];
 	while( BoutonEtage[i] != w)
 	{
 		i++;
