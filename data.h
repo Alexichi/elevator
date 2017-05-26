@@ -6,9 +6,10 @@
 
 typedef struct{
 	int etageActuel;
-	int etageSouhaite;
+	int etageSouhaite[3]; //liste d'attente des étages
 	int etageMax;
 	int tempo;
+	int tempoArret;
 	Widget *ZoneDessin;
 } Ascenseur;
 

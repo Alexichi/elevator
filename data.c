@@ -11,8 +11,9 @@
 void init_struct(Ascenseur *d)		// Structure de donnee qui permet de faire transiter les donnees utiles au programme
 {
 	d->etageActuel = 0;
-	d->etageSouhaite = 0;
+	for (int i=0; i < 3; i++){d->etageSouhaite[i] = -1;}
 	d->tempo = TEMPO;
+	d->tempoArret = TEMPOARRET;
 	d->ZoneDessin = NULL;
 }
 

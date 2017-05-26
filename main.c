@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Can't open display \n");
 		return EXIT_FAILURE;
 	}
-	printf("display openned \n");
+	printf("display opened \n");
 	init_struct(&ascenseur);					// Initialisation de la structure ascenseur
 	init_display(argc, argv, &ascenseur);		// Creation des Widgets et DrawArea
 	display_update(&ascenseur);					// Fonction permettant de déplacer l'ascenseur
